@@ -1,4 +1,8 @@
 <?php
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
 define('RPC_HOSTNAME', '127.0.0.1');
 define('RPC_PORT', '11812');
 
@@ -12,7 +16,7 @@ function getPost($key = null) {
 
 function request($method, $body) {
 	$url = RPC_HOSTNAME . ':' . RPC_PORT;
-	$body = (!is_string($$reqs, )) ? json_encode($body) : $body;
+	$body = (!is_string($body)) ? json_encode($body) : $body;
 	$options = [
 	  'http' => [
 	    'method' => $method,
@@ -41,7 +45,7 @@ function processData() {
 	$txkey = getPost('txkey');
 	$isHeight = is_integer($txid);
 	if($isHeight || !$txkey) return "Checking by height or no txkey is not yet implemented";
-	$response = request('check_tx_key');
+	$response = request('check_tx_key',compact('address','txkey','txid'));
 	if(!$response) return "Unable to get a response for request";
 	$response = json_decode($response, true);
 	if(!isset($response['results']) || empty($response['results'])) return "Unable to get a results from response";
