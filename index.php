@@ -57,8 +57,6 @@ function processData() {
 $flashMessage = processData();
 
 
-var_dump($flashMessage );
-
 ?>
 
 
