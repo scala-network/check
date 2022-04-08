@@ -50,9 +50,7 @@ function processData() {
 	$response = json_decode($response, true);
 	if(!isset($response['results']) || empty($response['results'])) return "Unable to get a results from response";
 	$output = "<table><tbody>";
-	foreach($response['results'] as $key => $value) {
-		$output .= "<tr><th>$key</th><td>$value</td>";
-	}
+	foreach($response['results'] as $key => $value)  $output .= "<tr><th>$key</th><td>$value</td>";
 	$output .= "</tbody></table>";
 	return $output;
 
@@ -70,18 +68,13 @@ $flashMessage = processData();
 </head>
 <body>
   <main class="container">
-  	  <div class="grid" style='margin-bottom:1em;'>
-  	  	<h1 style="text-align: center;"> SCALA MINI EXPLORER</h1>
-  	  </div>
-  	 <?php if($flashMessage):?>
-  	  <div class="grid">
-  	  	<article aria-label="Message"><?=$flashMessage;?></article>
-  	  </div>
+  	<div class="grid" style='margin-bottom:1em;'><h1 style="text-align: center;">SCALA MINI EXPLORER</h1></div>
+  	<?php if($flashMessage):?>
+			<div class="grid"><article aria-label="Message"><?=$flashMessage;?></article></div>
   	<?php else:?>
   		 <div class="grid" style='margin-bottom:5em;'>
   	  	<div>
-  	  	This mini version of the explorer is to tests our upcoming v8 for any bugs and issues. If you want current chain go to <a href='https://explorer.scalaproject.io'>Explorer</a>
-  	  </div>
+  	  	This mini version of the explorer is to tests our upcoming v8 for any bugs and issues. If you want current chain go to <a href='https://explorer.scalaproject.io'>Explorer</a></div>
   	  </div>
   	<?php endif;?>
   	 
